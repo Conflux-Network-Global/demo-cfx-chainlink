@@ -1,13 +1,13 @@
 /* eslint-disable */
 
-const { Conflux } = require('js-conflux-sdk');
+const { Conflux } = require("js-conflux-sdk");
 require("dotenv").config();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 async function main() {
   const cfx = new Conflux({
-    url: 'http://testnet-jsonrpc.conflux-chain.org:12537',
+    url: "http://mainnet-jsonrpc.conflux-chain.org:12537",
     defaultGasPrice: 100,
     defaultGas: 1000000,
     logger: console,
@@ -23,27 +23,25 @@ async function main() {
   // ================================ Contract ================================
   // create contract instance
   const contract = cfx.Contract({
-    abi: require('./contract/abi.json'), //can be copied from remix
-    address: "0x8d83e6a0b245f023ff02147dc19a65c4e1e091a1"
+    abi: require("./contract/abi.json"), //can be copied from remix
+    address: "0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb",
   });
 
-  //get current number
-  const result = await contract.result();
-  console.log(Number(result));
+  // get current number
+  const output = await contract.getNum();
+  console.log(Number(output));
 
-  // const logs = await cfx.getLogs({address: contract.address})
-  // console.log(logs);
+  const epochNum = await cfx.getEpochNumber();
+  console.log(epochNum);
 
-
-  // // estimate deploy contract gas use
-  // const estimate = await contract.constructor().estimateGasAndCollateral();
-  // console.log(JSON.stringify(estimate)); // {"gasUsed":"175050","storageCollateralized":"64"}
-  //
-  // // deploy the contract, and get `contractCreated`
-  // const receipt = await contract.constructor()
-  //   .sendTransaction({ from: account })
-  //   .confirmed();
-  // console.log(receipt); // receipt.contractCreated: 0x8d83e6a0b245f023ff02147dc19a65c4e1e091a1
+  const logs = await cfx.getLogs({
+    address: contract.address,
+    fromEpoch: epochNum-100,
+    toEpoch: "latest_mined",
+    limit: 1,
+    topics: [],
+  });
+  console.log(logs);
 }
 
-main().catch(e => console.error(e));
+main().catch((e) => console.error(e));

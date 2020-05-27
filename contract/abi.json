@@ -25,7 +25,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "result",
+		"name": "getNum",
 		"outputs": [
 			{
 				"internalType": "uint256",
