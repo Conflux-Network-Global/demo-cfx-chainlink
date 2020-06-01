@@ -1,0 +1,20 @@
+{
+  "initiators": [
+    {
+      "type": "web"
+    }
+  ],
+  "tasks": [
+    {
+      "type": "HttpGet",
+      "params": {
+        "get": "http://worldtimeapi.org/api/ip"
+      }
+    },
+    {
+      "type": "JSONParse",
+      "params": { "path": ["unixtime"] }
+    },
+    { "type": "EthUint256" }
+  ]
+}
