@@ -1,0 +1,28 @@
+{
+  "initiators": [
+    {
+      "type": "external",
+      "params": {
+        "name": "cfx",
+        "body": {
+          "endpoint": "cfx-mainnet",
+          "addresses": ["0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb"]
+        }
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "type": "HttpGet",
+      "params": {
+        "get": "http://worldtimeapi.org/api/ip"
+      }
+    },
+    {
+      "type": "JSONParse",
+      "params": { "path": ["unixtime"] }
+    },
+    { "type": "EthUint256" },
+    { "type": "testbridge" }
+  ]
+}

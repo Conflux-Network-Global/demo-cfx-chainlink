@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const { Conflux } = require('js-conflux-sdk');
+const { Conflux } = require("js-conflux-sdk");
 require("dotenv").config();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
@@ -8,6 +8,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 async function main() {
   const cfx = new Conflux({
     url: 'http://mainnet-jsonrpc.conflux-chain.org:12537',
+    // url: 'http://testnet-jsonrpc.conflux-chain.org:12537',
     defaultGasPrice: 100,
     defaultGas: 1000000,
     logger: console,
@@ -23,15 +24,26 @@ async function main() {
   // ================================ Contract ================================
   // create contract instance
   const contract = cfx.Contract({
-    abi: require('./contract/abi.json'), //can be copied from remix
-    address: "0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb"
+    abi: require("./contract/abi.json"), //can be copied from remix
+    address: "0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb",
+    // address: "0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2"
   });
 
-  // interact with contract
-  const receipt = await contract.sendEvent()
-    .sendTransaction({ from: account })
-    .confirmed();
-  console.log(receipt);
+  // get current number
+  const output = await contract.getNum();
+  console.log(Number(output));
+
+  const epochNum = await cfx.getEpochNumber();
+  console.log(epochNum);
+
+  const logs = await cfx.getLogs({
+    address: contract.address,
+    fromEpoch: epochNum-100,
+    toEpoch: "latest_mined",
+    limit: 1,
+    topics: [],
+  });
+  console.log(logs);
 }
 
-main().catch(e => console.error(e));
+main().catch((e) => console.error(e));

@@ -43,6 +43,7 @@ async function main() {
     .sendTransaction({ from: account})
     .confirmed();
   console.log(receipt); // receipt.contractCreated: 0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb
+  // 0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2 (testnet address)
   // { index: 14,
   // epochNumber: 2952026,
   // outcomeStatus: 0,
