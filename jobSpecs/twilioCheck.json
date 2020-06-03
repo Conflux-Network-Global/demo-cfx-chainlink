@@ -1,0 +1,11 @@
+{
+  "initiators": [
+    {
+      "type": "cron",
+      "params": {
+        "schedule": "CRON_TZ=UTC */30 * * * * *"
+      }
+    }
+  ],
+  "tasks": [{ "type": "TwilioCheck" }, { "type": "cfxSendTx" }]
+}

@@ -116,4 +116,4 @@ When run job is called on the node, it will trigger a test payload in the EI tha
 
 ### Notes
 - This is a demonstration integration, there are many improvements that can be made from a increased security, code optimization, and testing perspectives
-- To do: passing information from EI to CL node (example in [substrate.go](https://github.com/smartcontractkit/external-initiator/blob/master/blockchain/substrate.go) for EI)
+- To do: test cases for CFX EI

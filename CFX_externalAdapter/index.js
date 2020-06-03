@@ -4,7 +4,7 @@ const { Conflux } = require("js-conflux-sdk");
 require("dotenv").config();
 
 const app = express();
-const port = 5000;
+const port = 5001;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const main = () => {
@@ -13,10 +13,6 @@ const main = () => {
   app.post("/", async (req, res) => {
     console.log("POST Data: ", req.body);
     const output = { id: req.body.id };
-    const token = req.headers.authorization.split(" ")[1]
-    if (token !== process.env.TOKEN) {
-      res.status(401).send("invalid token");
-    }
 
     //create conflux instance
     const cfx = new Conflux({
@@ -37,12 +33,17 @@ const main = () => {
       // address: "0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2",
     });
 
-    // interact with contract
-    const receipt = await contract
-      .update(req.body.data.result)
-      .sendTransaction({ from: account })
-      .confirmed( );
-    console.log(receipt);
+    const keys = Object.keys(req.body.data);
+    for (let i = 0; i < keys.length; i++) {
+      console.log(keys[i]);
+      const key = keys[i];
+
+      // interact with contract
+      const receipt = await contract[key](req.body.data[key])
+        .sendTransaction({ from: account })
+        .confirmed();
+      console.log(receipt);
+    }
 
     res.status(200).send(output);
   });
