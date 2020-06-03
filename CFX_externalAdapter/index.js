@@ -10,6 +10,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const main = () => {
   app.use(bodyParser.json());
 
+  //POST endpoint for handling CL node calls
   app.post("/", async (req, res) => {
     console.log("POST Data: ", req.body);
     const output = { id: req.body.id };
@@ -33,6 +34,7 @@ const main = () => {
       // address: "0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2",
     });
 
+    //loops through transactions if multiple messages are found
     const keys = Object.keys(req.body.data);
     for (let i = 0; i < keys.length; i++) {
       console.log(keys[i]);

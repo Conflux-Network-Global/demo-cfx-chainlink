@@ -14,6 +14,7 @@ let currentDate = new Date();
 const main = () => {
   app.use(bodyParser.json());
 
+  //POST endpoint for handling CL node calls for sending SMS
   app.post("/", async (req, res) => {
     console.log("POST Data: ", req.body);
     const output = { id: req.body.id };
@@ -48,8 +49,9 @@ const main = () => {
     res.status(200).send(output);
   });
 
+  //POST endpoitn for handling CL node calls for checking for new messages
   app.post("/check", async (req, res) => {
-    newDate = new Date();
+    newDate = new Date(); //date stored to not pull all texts, just new ones
 
     const data = {};
     //checking received SMS messages
@@ -60,6 +62,7 @@ const main = () => {
       })
       .then((messages) =>
         messages.forEach((m) => {
+          //message post processing
           if (m.from === `+${process.env.OUTGOING_NUMBER}`) {
             const msgParts = m.body.split(" ");
             if (msgParts.length >= 2) {
