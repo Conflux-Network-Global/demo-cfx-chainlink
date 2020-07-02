@@ -7,6 +7,13 @@ There are two main implications:
 1. The connection of Chainlink to Conflux Network allows for the growth of all types of oracles on Conflux Network to power exchanges, other oracle needs, and bridge Web2 technology with Web3.
 1. The specific implementation of using SMS to interact with the blockchain has the potential for opening access to Web3 for users without good internet connection in areas across the world. Or simply, text-based interactions with smart contracts for simplicity and convenience.
 
+### Diagrams
+Demonstration diagrams for the various connections and the interaction sequences to connect a Conflux Network smart contract to an SMS gateway using Chainlink.
+
+![](./diagrams/chainlink_sms_labelled.png)
+
+![](./diagrams/chainlink_smsSequence.png)
+
 ## Setup Steps
 
 Generalized setup steps for the configuration of Chainlink components - more details are provided for connecting the various pieces together. Please see [Chainlink](https://docs.chain.link/docs)/[Conflux](https://developer.conflux-chain.org/) documentation if more details on configuration and setup are needed.
