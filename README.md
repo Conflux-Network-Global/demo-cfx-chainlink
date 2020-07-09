@@ -54,7 +54,7 @@ During setup, a node password and a username/password is required for setup. The
 External initiators observe a blockchain node endpoint and will trigger runs on the Chainlink node.  
 _Note: Prerequisite for Go to be installed. See [here](https://golang.org/doc/install) for instructions._
 
-Clone and build the external initiator repository (forked from main repository to adapt for Conflux Network)
+Clone and build the [external initiator repository](https://github.com/Conflux-Network-Global/external-initiator) (forked from main repository to adapt for Conflux Network)
 
 ```
 git clone https://github.com/Conflux-Network-Global/external-initiator
