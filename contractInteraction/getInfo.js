@@ -11,39 +11,39 @@ async function main() {
     // url: 'http://testnet-jsonrpc.conflux-chain.org:12537',
     defaultGasPrice: 100,
     defaultGas: 1000000,
-    logger: console,
+    // logger: console,
   });
 
-  console.log(cfx.defaultGasPrice); // 100
-  console.log(cfx.defaultGas); // 1000000
+  // console.log(cfx.defaultGasPrice); // 100
+  // console.log(cfx.defaultGas); // 1000000
 
   // ================================ Account =================================
   const account = cfx.Account(PRIVATE_KEY); // create account instance
-  console.log(account.address); // 0x1bd9e9be525ab967e633bcdaeac8bd5723ed4d6b
+  console.log("Address: ", account.address); // 0x1bd9e9be525ab967e633bcdaeac8bd5723ed4d6b
 
   // ================================ Contract ================================
   // create contract instance
   const contract = cfx.Contract({
     abi: require("./contract/abi.json"), //can be copied from remix
-    address: "0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb",
+    address: "0x8250e53e596dddd6a167a3e6279bfd5ca85115bb",
     // address: "0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2"
   });
 
   // get current number
   const output = await contract.getNum();
-  console.log(Number(output));
+  console.log("On-chain state: ", Number(output));
 
   const epochNum = await cfx.getEpochNumber();
-  console.log(epochNum);
+  console.log("Current epoch: ", epochNum);
 
-  const logs = await cfx.getLogs({
-    address: contract.address,
-    fromEpoch: epochNum-100,
-    toEpoch: "latest_mined",
-    limit: 1,
-    topics: [],
-  });
-  console.log(logs);
+  // const logs = await cfx.getLogs({
+  //   address: contract.address,
+  //   fromEpoch: epochNum-100,
+  //   toEpoch: "latest_mined",
+  //   limit: 1,
+  //   topics: [],
+  // });
+  // console.log(logs);
 }
 
 main().catch((e) => console.error(e));
