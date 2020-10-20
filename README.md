@@ -59,6 +59,7 @@ Clone and build the [external initiator repository](https://github.com/Conflux-N
 ```
 git clone https://github.com/Conflux-Network-Global/external-initiator
 cd external-initiator
+git checkout generalized-EI
 go build
 ```
 
