@@ -5,8 +5,8 @@
       "params": {
         "name": "cfx",
         "body": {
-          "endpoint": "cfx-mainnet",
-          "addresses": ["0x8aa73841e0a0e6e816b2c66c9c5ed1e144ad8cbb"]
+          "endpoint": "cfx-testnet",
+          "addresses": ["0x8ac6bf0700ed41d1323a1f9c16d85d76f1196cdb"]
         }
       }
     }

@@ -7,8 +7,8 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 async function main() {
   const cfx = new Conflux({
-    url: 'http://main.confluxrpc.org',
-    // url: 'http://test.confluxrpc.org',
+    // url: 'http://main.confluxrpc.org',
+    url: 'http://test.confluxrpc.org',
     defaultGasPrice: 100,
     defaultGas: 1000000,
     // logger: console,
@@ -25,8 +25,7 @@ async function main() {
   // create contract instance
   const contract = cfx.Contract({
     abi: require("./contract/abi.json"), //can be copied from remix
-    address: "0x8250e53e596dddd6a167a3e6279bfd5ca85115bb",
-    // address: "0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2"
+    address: "0x8ac6bf0700ed41d1323a1f9c16d85d76f1196cdb",
   });
 
   // get current number

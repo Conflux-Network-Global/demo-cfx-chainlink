@@ -9,7 +9,7 @@ async function main() {
   // const defaultGasPrice = util.unit("GDrip", "Drip")(10)
 
   const cfx = new Conflux({
-    url: 'http://main.confluxrpc.org',
+    url: 'http://test.confluxrpc.org',
     defaultGasPrice: 100,
     defaultGas: 1000000,
     logger: console,
@@ -40,24 +40,26 @@ async function main() {
 
   // deploy the contract, and get `contractCreated`
   const receipt = await contract.constructor()
-    .sendTransaction({ from: account, chainId: 2})
-    .confirmed();
-  console.log(receipt); // receipt.contractCreated: 0x8250e53e596dddd6a167a3e6279bfd5ca85115bb
-//   {
-//   index: 0,
-//   epochNumber: 1035303,
+    .sendTransaction({ from: account})
+    .executed();
+  console.log(receipt); // receipt.contractCreated: 0x8ac6bf0700ed41d1323a1f9c16d85d76f1196cdb
+  // {//   index: 0,
+//   epochNumber: 857738,
 //   outcomeStatus: 0,
 //   gasUsed: JSBI(1) [ 150175, sign: false ],
-//   blockHash: '0x693d784ee4d966fbc8666a20c89435c2690129758dc4fa9c59905301e1bd8838',
-//   contractCreated: '0x8250e53e596dddd6a167a3e6279bfd5ca85115bb',
+//   gasFee: JSBI(1) [ 15017500, sign: false ],
+//   blockHash: '0xb4e9d6dace2eef95d9333026df27a846412bf4b9bf8fdc23ce26ed1e8071e890',
+//   contractCreated: '0x8ac6bf0700ed41d1323a1f9c16d85d76f1196cdb',
 //   from: '0x15fd1e4f13502b1a8be110f100ec001d0270552d',
-//   gasFee: '0x47868c0',
 //   logs: [],
 //   logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
-//   stateRoot: '0x2b7618499604f5e5dfc69a140d38acd8fd0550703f3f1796a79e478d7bdd55bf',
+//   stateRoot: '0x17fdd771546668832ace0e345d950a09171b7d84f48cd2e25315d9ecd00287ff',
 //   to: null,
-//   transactionHash: '0xf719e4cb4d485fc9dd251dbcf5e89a4f03133c0695cc6a06f6e7051ebdbce4b3'
+//   transactionHash: '0x85daf6671f6e612dec51f65231e6f542c917358ef7bdd376e0512a7aae0aba5c',
+//   txExecErrorMsg: null
 // }
+
+
 
 }
 

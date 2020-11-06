@@ -17,7 +17,7 @@ const main = () => {
 
     //create conflux instance
     const cfx = new Conflux({
-      url: "http://main.confluxrpc.org",
+      url: "http://test.confluxrpc.org",
       defaultGasPrice: 100,
       defaultGas: 1000000,
       // logger: console,
@@ -29,8 +29,7 @@ const main = () => {
     // create contract instance
     const contract = cfx.Contract({
       abi: require("../contractInteraction/contract/abi.json"), //can be copied from remix
-      address: "0x8250e53e596dddd6a167a3e6279bfd5ca85115bb",
-      // address: "0x8d6fd7de324a2ac33c753d7c80f79d9afdc42db2",
+      address: "0x8ac6bf0700ed41d1323a1f9c16d85d76f1196cdb",
     });
 
     //loops through transactions if multiple messages are found
@@ -41,8 +40,8 @@ const main = () => {
 
       // interact with contract
       const receipt = await contract[key](req.body.data[key])
-        .sendTransaction({ from: account, chainId: 2 })
-        .confirmed();
+        .sendTransaction({ from: account})
+        .executed();
       console.log("Transaction Hash: ", receipt.transactionHash);
     }
 

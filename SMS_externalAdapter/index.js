@@ -21,7 +21,7 @@ const main = () => {
 
     //new conflux instance
     const cfx = new Conflux({
-      url: "http://main.confluxrpc.org",
+      url: "http://test.confluxrpc.org",
       defaultGasPrice: 100,
       defaultGas: 1000000,
       logger: console,
